@@ -1,0 +1,48 @@
+From 4a96462ca367ba4598b226c44970b99155b55b62 Mon Sep 17 00:00:00 2001
+From: Anton Kindestam <antonki@kth.se>
+Date: Fri, 22 Feb 2019 01:35:49 +0100
+Subject: [PATCH] Stop ./configure script from including random env variables
+ into .config.mk
+
+This causes some quoting issues with some variable when built with
+portage. Instead of trying to fix that, simply skip importing env vars into .config.mk
+---
+ mk/configure | 22 ----------------------
+ 1 file changed, 22 deletions(-)
+
+diff --git a/mk/configure b/mk/configure
+index 4b6e61a..5ae5b82 100644
+--- a/mk/configure
++++ b/mk/configure
+@@ -560,28 +560,6 @@ echo >&10
+ exec 10>&-
+ 
+ 
+-# Store environment (with restrictions).
+-env | while read line; do
+-    var="${line%%=*}"
+-    val="${line#*=}"
+-    if test "${var}" = "${line}"; then
+-	# Malformated variables. (Can happen!, sigh...)
+-	continue
+-    elif test -n "$(echo "${var}" | tr -d '[_a-zA-Z0-9-]')"; then
+-	# Variable is not used and is potentially not
+-	# formatted in a compatible way.
+-	continue
+-    fi
+-    case "${var}" in
+-	(_ | PWD | SHELL | SHLVL | TERM | COLORTERM | MAKEFLAGS)
+-	    # We do not want to propagate these.
+-	    ;;
+-	(*)
+-	    echo "${var}" = "${val}" >&20
+-	    ;;
+-    esac
+-done
+-
+ # Store directories and filenames.
+ if test -n "${destdir}"; then
+    echo DESTDIR = "${destdir}" >&20
+-- 
+2.19.2
+

@@ -9,7 +9,7 @@ EGIT_COMMIT=cb13f33d17857d3e6495f5d1f3982202927d1306
 SRC_URI="https://github.com/maandree/${PN}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 S=${WORKDIR}/${PN}-${EGIT_COMMIT}/
 
-LICENSE="GPL-3"n
+LICENSE="GPL-3"
 SLOT=0
 KEYWORDS="amd64"
 

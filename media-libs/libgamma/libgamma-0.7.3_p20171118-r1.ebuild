@@ -17,7 +17,7 @@ IUSE="xrandr vidmode drm dummy +doc"
 
 BDEPEND=">=sys-apps/texinfo-4.11
 	doc? ( virtual/texi2dvi )
-	dev-lang/python:3.7
+	dev-lang/python:3.9
 	dev-util/gpp"
 DEPEND="xrandr? ( x11-libs/libxcb )
 	vidmode? ( x11-libs/libX11 x11-libs/libXxf86vm )

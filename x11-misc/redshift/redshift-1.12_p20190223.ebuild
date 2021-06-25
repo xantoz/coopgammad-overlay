@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Modified 2019 by Anton Kindestam <antonki@kth.se>
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python3_{4,5,6,7} )
+PYTHON_COMPAT=( python3_{4,5,6,7,8,9,10} )
 
 inherit systemd autotools eutils gnome2-utils python-r1
 
